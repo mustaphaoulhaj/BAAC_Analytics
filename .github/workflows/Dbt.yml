@@ -1,0 +1,82 @@
+name: dbt CI - BAAC Analytics
+
+# Déclencheurs : à chaque push, à chaque pull request vers main,
+# et manuellement depuis l'onglet Actions de GitHub (workflow_dispatch)
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  dbt-build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Récupère le code du repo sur le runner
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      # 2. Installe Python
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 3. Installe dbt-duckdb et les dépendances
+      - name: Installer dbt-duckdb
+        run: |
+          python -m pip install --upgrade pip
+          pip install dbt-duckdb
+
+      #  Lint SQL avant de lancer dbt
+      - name: Installer et lancer sqlfluff
+        run: |
+          pip install sqlfluff sqlfluff-templater-dbt
+          sqlfluff lint models/ --dialect duckdb || true
+        continue-on-error: true
+        # continue-on-error=true pour ne pas bloquer la CI pendant
+        # que tu roules ton lint pour la première fois — à retirer
+        # une fois que ton SQL est propre
+
+ 
+      # 4. Crée le profiles.yml pour que dbt sache se connecter à DuckDB
+ 
+      - name: Créer profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml << EOF
+          dbt_duckdb_baac:
+            target: dev
+            outputs:
+              dev:
+                type: duckdb
+                path: analytics.duckdb
+                threads: 4
+          EOF
+
+      # 5. Installe les packages dbt (ex. dbt_utils)
+      - name: dbt deps
+        run: dbt deps
+        working-directory: .
+
+      # 6. Charge les seeds si tu en as
+      - name: dbt seed
+        run: dbt seed
+        working-directory: .
+
+      # 7. Construit tous les modèles (staging -> intermediate -> marts)
+      - name: dbt run
+        run: dbt run
+        working-directory: .
+
+      # 8. Lance les tests de qualité de données
+      - name: dbt test
+        run: dbt test
+        working-directory: .
+
+      #  Génère la doc dbt, à publier ensuite sur GitHub Pages
+      # - name: dbt docs generate
+      #   run: dbt docs generate
+      #   working-directory: .
