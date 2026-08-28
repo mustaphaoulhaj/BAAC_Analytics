@@ -1,6 +1,5 @@
 version: 2
 
-
 sources:
 
   - name: raw
@@ -8,9 +7,17 @@ sources:
     tables:
 
       - name: raw_caracteristiques
+        meta : 
+          external_location : "data/caract-2024.csv"
 
       - name: raw_lieux
+        meta :
+          external_location : "data/lieux-2024.csv"
 
       - name: raw_vehicules
+        meta : 
+          external_location : "data/vehicules-2024.csv"
 
       - name: raw_usagers
+        meta : 
+          external_location : "data/usagers-2024.csv"
