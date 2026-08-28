@@ -100,37 +100,31 @@ BAAC_Analytics/
 
 ## 📊 Aperçu du rapport Power BI
 
-### Vue d'ensemble
-![Vue d'ensemble](https://github.com/mustaphaoulhaj/BAAC_Analytics/docs/images/Page%1)
 
-### Analyse de la gravité
-![Analyse de la gravité](docs/images/page2-analyse-gravite.png)
+![Vue d'ensemble](https://github.com/mustaphaoulhaj/BAAC_Analytics/blob/main/docs/images/Page%201.png)
 
-### Profil des usagers impliqués
-![Profil des usagers](docs/images/page3-profil-usagers.png)
+![Analyse de la gravité](https://github.com/mustaphaoulhaj/BAAC_Analytics/blob/main/docs/images/Page%202.png)
 
-### Véhicules & conditions de l'accident
-![Véhicules et conditions](docs/images/page4-vehicules-conditions.png)
+![Profil des usagers](https://github.com/mustaphaoulhaj/BAAC_Analytics/blob/main/docs/images/Page%203.png)
 
-### Contexte environnemental
-![Contexte environnemental](docs/images/page5-contexte-environnemental.png)
+![Véhicules et conditions](https://github.com/mustaphaoulhaj/BAAC_Analytics/blob/main/docs/images/Page%204.png)
 
-### Fiche accident
-![Fiche accident](docs/images/page6-fiche-accident.png)
+![Contexte environnemental](https://github.com/mustaphaoulhaj/BAAC_Analytics/blob/main/docs/images/Page%205.png)
+
+![Fiche accident](https://github.com/mustaphaoulhaj/BAAC_Analytics/blob/main/docs/images/Page%206.png)
 
 ## ⚙️ CI/CD
 
-À chaque `push` ou `pull request` sur `main`, le workflow [`dbt_ci.yml`](.github/workflows/dbt_ci.yml) :
+À chaque `push` ou `pull request` sur `main`, le workflow [`Dbt.yml`](.github/workflows/Dbt.yml) :
 
 1. Installe dbt-duckdb et lint le SQL (`sqlfluff`)
 2. Exécute `dbt deps`, `dbt seed`, `dbt run`, `dbt test`
 3. Génère la documentation (`dbt docs generate`)
-4. Publie la documentation sur **GitHub Pages**
 
 ## 📓 Journal des décisions
 
 | Date | Décision |
 |---|---|
-| — | Remplacement de Snowflake par DuckDB pour les couches RAW et Analytics |
-| 27/08/2026 | Modèles de staging finalisés ; marts en cours ; démarrage GitHub Actions |
-| 28/08/2026 | Dashboard Power BI terminé ; CI/CD GitHub Actions fonctionnelle ; publication de la doc dbt sur GitHub Pages |
+| 18/07/2026 | Remplacement de Snowflake par DuckDB pour les couches RAW et Analytics |
+| 27/08/2026 | Modèles de staging et marts finalisés ;  démarrage GitHub Actions |
+| 28/08/2026 | Dashboard Power BI terminé ; CI/CD GitHub Actions fonctionnelle  |
