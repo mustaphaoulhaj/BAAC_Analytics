@@ -2,7 +2,7 @@
 
 > Pipeline analytique des accidents corporels de la circulation (données ONISR/BAAC)
 
-[![dbt CI](https://github.com/mustaphaoulhaj/BAAC_Analytics/actions/workflows/dbt_ci.yml/badge.svg)](https://github.com/mustaphaoulhaj/BAAC_Analytics/actions/workflows/dbt_ci.yml)
+[![dbt CI](https://github.com/mustaphaoulhaj/BAAC_Analytics/actions/workflows/Dbt.yml/badge.svg)](https://github.com/mustaphaoulhaj/BAAC_Analytics/actions/workflows/Dbt.yml)
 
 ---
 
@@ -65,7 +65,6 @@ flowchart TD
 | **dbt Core** | Transformation SQL (staging → intermediate → marts), tests, documentation |
 | **Docker** | Environnement dbt reproductible *(en cours d'intégration)* |
 | **GitHub Actions** | CI/CD : build, tests, génération et publication de la doc |
-| **GitHub Pages** | Hébergement de la documentation dbt interactive |
 | **Power BI** | Restitution finale du dataset agrégé `dataset_baac` |
 
 ## 📂 Source de données
@@ -99,20 +98,25 @@ BAAC_Analytics/
 └── README.md
 ```
 
-## 📊 Restitution Power BI
+## 📊 Aperçu du rapport Power BI
 
-Le dataset agrégé `dataset_baac` (couche Analytics DuckDB) alimente un dashboard Power BI.
+### Vue d'ensemble
+![Vue d'ensemble](https://github.com/mustaphaoulhaj/BAAC_Analytics/docs/images/Page%1)
 
-<!--
-  Ajoute tes captures d'écran ici, par exemple :
-  ![Vue d'ensemble du dashboard](docs/images/powerbi_overview.png)
-  ![Analyse par gravité](docs/images/powerbi_gravite.png)
+### Analyse de la gravité
+![Analyse de la gravité](docs/images/page2-analyse-gravite.png)
 
-  Astuce : crée un dossier docs/images/ dans le repo, dépose tes .png,
-  puis référence-les avec le chemin relatif ci-dessus.
--->
+### Profil des usagers impliqués
+![Profil des usagers](docs/images/page3-profil-usagers.png)
 
-*(captures d'écran à venir)*
+### Véhicules & conditions de l'accident
+![Véhicules et conditions](docs/images/page4-vehicules-conditions.png)
+
+### Contexte environnemental
+![Contexte environnemental](docs/images/page5-contexte-environnemental.png)
+
+### Fiche accident
+![Fiche accident](docs/images/page6-fiche-accident.png)
 
 ## ⚙️ CI/CD
 
