@@ -1,3 +1,4 @@
+
 name: dbt CI - BAAC Analytics
 
 # Déclencheurs : à chaque push, à chaque pull request vers main,
@@ -75,8 +76,3 @@ jobs:
       - name: dbt test
         run: dbt test
         working-directory: .
-
-      #  Génère la doc dbt, à publier ensuite sur GitHub Pages
-      # - name: dbt docs generate
-      #   run: dbt docs generate
-      #   working-directory: .
